@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -44,23 +45,29 @@ class MainActivity : AppCompatActivity() {
         })
 
         val galleryIds: IntArray = intArrayOf(
-            R.drawable.ic_done_black,
-            R.drawable.ic_edit_black,
-            R.drawable.ic_share_black,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher_round)
+            R.drawable.gal_nebulous,
+            R.drawable.gal_polygons,
+            R.drawable.gal_greens,
+            R.drawable.gal_pen,
+            R.drawable.gal_triangles)
         val from: Array<String> = arrayOf("image")
         val to: IntArray = intArrayOf(R.id.imageView)
         val galleryData = ArrayList<MutableMap<String, Int>>()
 
         galleryIds.forEach {
             val map = HashMap<String, Int>()
-            map.put("image", it)
+            map["image"] = it
             galleryData.add(map)
         }
         val galleryAdapter = SimpleAdapter(this,
             galleryData, R.layout.gallery_item, from, to)
         lvGallery.adapter = galleryAdapter
+        lvGallery.onItemClickListener = object: AdapterView.OnItemClickListener{
+            override fun onItemClick(parent: AdapterView<*>?, view: View?,
+                                     position: Int, id: Long){
+                ivBackground.setImageResource(galleryIds[position])
+            }
+        }
     }
 
     private fun saveImage(image: Bitmap): Uri?{
