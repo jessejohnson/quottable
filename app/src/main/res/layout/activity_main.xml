@@ -26,32 +26,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/quote_content_description" />
-        <TextView
-            android:id="@+id/tvQuote"
+        <EditText
+            android:id="@+id/etQuote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/default_quote"
             android:textSize="@dimen/textLarge"
             android:padding="@dimen/paddingSmall"
             android:textColor="@color/white"
+            android:background="@color/transparent"
             android:shadowColor="@color/black"
             android:shadowDx="1.0"
             android:shadowDy="1.0"
             android:shadowRadius="1.0"
+            android:enabled="false"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"
             app:layout_constraintLeft_toLeftOf="@id/ivBackground"
             app:layout_constraintRight_toRightOf="@id/ivBackground"
-            app:layout_constraintTop_toTopOf="@id/ivBackground" />
+            app:layout_constraintTop_toTopOf="@id/ivBackground"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            tools:ignore="LabelFor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <EditText
-        android:id="@+id/etQuote"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/marginLarge"
-        app:layout_constraintEnd_toEndOf="@id/clImageQuote"
-        app:layout_constraintStart_toStartOf="@id/clImageQuote"
-        app:layout_constraintBottom_toTopOf="@id/llToolbar"/>
 
     <LinearLayout
         android:id="@+id/llToolbar"
@@ -60,6 +56,7 @@
         android:orientation="horizontal"
         android:background="@color/colorAccent"
         android:layout_gravity="bottom"
+        android:weightSum="5"
         android:padding="@dimen/paddingSmall"
         app:layout_constraintBottom_toBottomOf="parent">
         <ImageView
@@ -67,6 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_share_black"
+            android:layout_weight="1"
+            android:contentDescription="@string/share_content_description" />
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit_black"
+            android:layout_weight="1"
             android:contentDescription="@string/share_content_description" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +28,17 @@ class MainActivity : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 intent.type = "image/png"
                 startActivity(intent)
+            }
+        })
+
+        ivEdit.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?){
+                etQuote.isEnabled = !etQuote.isEnabled //toggle enabled!
+                if(etQuote.isEnabled){
+                    ivEdit.setImageResource(R.drawable.ic_done_black)
+                }else{
+                    ivEdit.setImageResource(R.drawable.ic_edit_black)
+                }
             }
         })
     }
