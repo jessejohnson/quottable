@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Quottable!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/pictureSide"
+        android:layout_height="@dimen/pictureSide"
+        android:layout_gravity="center|top"
+        android:background="@color/colorPrimary"
+        android:layout_margin="@dimen/marginSmall">
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/colorPrimaryDark"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subjective conscious mind is an analog of what we call the real world!"
+            android:textSize="@dimen/textLarge"
+            android:padding="@dimen/paddingSmall"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.0"
+            android:shadowDy="1.0"
+            android:shadowRadius="1.0"
+            app:layout_constraintBottom_toBottomOf="@id/ivBackground"
+            app:layout_constraintLeft_toLeftOf="@id/ivBackground"
+            app:layout_constraintRight_toRightOf="@id/ivBackground"
+            app:layout_constraintTop_toTopOf="@id/ivBackground" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
