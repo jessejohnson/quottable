@@ -26,6 +26,8 @@ class QuoteActivity : AppCompatActivity() {
             etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
         }
 
+        setUpGallery() //populate gallery with background image options
+
         ivShare.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 val uri = saveImage(clImageQuote.drawToBitmap())
@@ -47,7 +49,9 @@ class QuoteActivity : AppCompatActivity() {
                 }
             }
         })
+    }
 
+    private fun setUpGallery(){
         val galleryIds: IntArray = intArrayOf(
             R.drawable.gal_nebulous,
             R.drawable.gal_polygons,
@@ -57,7 +61,6 @@ class QuoteActivity : AppCompatActivity() {
         val from: Array<String> = arrayOf("image")
         val to: IntArray = intArrayOf(R.id.imageView)
         val galleryData = ArrayList<MutableMap<String, Int>>()
-
         galleryIds.forEach {
             val map = HashMap<String, Int>()
             map["image"] = it
