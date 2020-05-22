@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +12,10 @@
         android:layout_height="@dimen/pictureSide"
         android:layout_gravity="center|top"
         android:background="@color/colorPrimary"
-        android:layout_margin="@dimen/marginSmall">
+        android:layout_margin="@dimen/marginSmall"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <ImageView
             android:id="@+id/ivBackground"
             android:layout_width="match_parent"
@@ -24,9 +27,10 @@
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/quote_content_description" />
         <TextView
+            android:id="@+id/tvQuote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subjective conscious mind is an analog of what we call the real world!"
+            android:text="@string/default_quote"
             android:textSize="@dimen/textLarge"
             android:padding="@dimen/paddingSmall"
             android:textColor="@color/white"
@@ -39,17 +43,30 @@
             app:layout_constraintRight_toRightOf="@id/ivBackground"
             app:layout_constraintTop_toTopOf="@id/ivBackground" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/etQuote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginLarge"
+        app:layout_constraintEnd_toEndOf="@id/clImageQuote"
+        app:layout_constraintStart_toStartOf="@id/clImageQuote"
+        app:layout_constraintBottom_toTopOf="@id/llToolbar"/>
+
     <LinearLayout
+        android:id="@+id/llToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/colorAccent"
         android:layout_gravity="bottom"
-        android:padding="@dimen/paddingSmall">
+        android:padding="@dimen/paddingSmall"
+        app:layout_constraintBottom_toBottomOf="parent">
         <ImageView
             android:id="@+id/ivShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_share_black"/>
+            android:src="@drawable/ic_share_black"
+            android:contentDescription="@string/share_content_description" />
     </LinearLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
