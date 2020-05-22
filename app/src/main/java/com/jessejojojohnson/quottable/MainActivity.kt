@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if(intent.hasExtra(Intent.EXTRA_TEXT)){
+            etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
+        }
+
         ivShare.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 val uri = saveImage(clImageQuote.drawToBitmap())
