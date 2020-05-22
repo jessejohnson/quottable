@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -41,13 +42,32 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        val galleryIds: IntArray = intArrayOf(
+            R.drawable.ic_done_black,
+            R.drawable.ic_edit_black,
+            R.drawable.ic_share_black,
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher_round)
+        val from: Array<String> = arrayOf("image")
+        val to: IntArray = intArrayOf(R.id.imageView)
+        val galleryData = ArrayList<MutableMap<String, Int>>()
+
+        galleryIds.forEach {
+            val map = HashMap<String, Int>()
+            map.put("image", it)
+            galleryData.add(map)
+        }
+        val galleryAdapter = SimpleAdapter(this,
+            galleryData, R.layout.gallery_item, from, to)
+        lvGallery.adapter = galleryAdapter
     }
 
     private fun saveImage(image: Bitmap): Uri?{
         var uri: Uri? = null
         try {
             val imagesFolder = File(cacheDir, "images")
-            imagesFolder.mkdirs()
+   q         imagesFolder.mkdirs()
             val file = File(imagesFolder,
                 "quottable-${System.currentTimeMillis()}.png")
             val stream = FileOutputStream(file)

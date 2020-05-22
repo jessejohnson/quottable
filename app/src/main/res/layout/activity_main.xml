@@ -49,6 +49,18 @@
             tools:ignore="LabelFor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <GridView
+        android:id="@+id/lvGallery"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/galleryHeight"
+        android:layout_margin="@dimen/marginLarge"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/clImageQuote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
