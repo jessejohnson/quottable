@@ -3,4 +3,5 @@
     <string name="quote_content_description">quote</string>
     <string name="share_content_description">share</string>
     <string name="default_quote">Subjective conscious mind is an analog of what we call the real world!</string>
+    <string name="title_quote_activity">Quote with Quottable</string>
 </resources>
