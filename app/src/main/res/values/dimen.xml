@@ -5,6 +5,7 @@
     <dimen name="marginSmall">10dp</dimen>
     <dimen name="marginLarge">20dp</dimen>
     <dimen name="paddingSmall">15dp</dimen>
+    <dimen name="paddingLarge">30dp</dimen>
     <dimen name="galleryHeight">150dp</dimen>
     <dimen name="galleryItemSide">120dp</dimen>
 </resources>

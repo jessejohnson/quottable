@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/default_quote"
             android:textSize="@dimen/textLarge"
-            android:padding="@dimen/paddingSmall"
+            android:padding="@dimen/paddingLarge"
             android:textColor="@color/white"
             android:background="@color/transparent"
             android:shadowColor="@color/black"
@@ -46,6 +46,7 @@
             app:layout_constraintLeft_toLeftOf="@id/ivBackground"
             app:layout_constraintRight_toRightOf="@id/ivBackground"
             app:layout_constraintTop_toTopOf="@id/ivBackground"
+            app:layout_constraintVertical_bias="0.2"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             tools:ignore="LabelFor" />
@@ -55,7 +56,7 @@
         android:id="@+id/lvGallery"
         android:layout_width="match_parent"
         android:layout_height="@dimen/galleryHeight"
-        android:layout_margin="@dimen/marginLarge"
+        android:layout_margin="@dimen/marginSmall"
         android:numColumns="3"
         android:scrollbars="none"
         android:gravity="center"
@@ -68,24 +69,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorAccent"
+        android:background="@color/transparent"
+        android:layout_margin="@dimen/marginSmall"
         android:layout_gravity="bottom"
-        android:weightSum="5"
-        android:padding="@dimen/paddingSmall"
         app:layout_constraintBottom_toBottomOf="parent">
-        <ImageView
+        <ImageButton
             android:id="@+id/ivShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:src="@drawable/ic_share_black"
-            android:layout_weight="1"
-            android:contentDescription="@string/share_content_description" />
-        <ImageView
+            android:contentDescription="@string/share_tooltip"
+            android:tooltipText="@string/share_tooltip"/>
+        <ImageButton
             android:id="@+id/ivEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:src="@drawable/ic_edit_black"
-            android:layout_weight="1"
-            android:contentDescription="@string/share_content_description" />
+            android:contentDescription="@string/edit_tooltip"
+            android:tooltipText="@string/edit_tooltip"/>
+        <ImageButton
+            android:id="@+id/ivFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:src="@drawable/ic_font_black"
+            android:contentDescription="@string/fonts_tooltip"
+            android:tooltipText="@string/fonts_tooltip"/>
+        <ImageButton
+            android:id="@+id/ivColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:src="@drawable/ic_color_black"
+            android:contentDescription="@string/colors_tooltip"
+            android:tooltipText="@string/colors_tooltip"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
