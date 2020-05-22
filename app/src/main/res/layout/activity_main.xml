@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clImageQuote"
         android:layout_width="@dimen/pictureSide"
         android:layout_height="@dimen/pictureSide"
         android:layout_gravity="center|top"
@@ -20,7 +21,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/quote_content_description" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,4 +39,17 @@
             app:layout_constraintRight_toRightOf="@id/ivBackground"
             app:layout_constraintTop_toTopOf="@id/ivBackground" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorAccent"
+        android:layout_gravity="bottom"
+        android:padding="@dimen/paddingSmall">
+        <ImageView
+            android:id="@+id/ivShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share_black"/>
+    </LinearLayout>
 </FrameLayout>

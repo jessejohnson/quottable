@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Quottable</string>
+    <string name="quote_content_description">quote</string>
 </resources>
