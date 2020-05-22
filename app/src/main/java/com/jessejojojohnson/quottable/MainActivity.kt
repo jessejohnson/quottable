@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         var uri: Uri? = null
         try {
             val imagesFolder = File(cacheDir, "images")
-   q         imagesFolder.mkdirs()
+            imagesFolder.mkdirs()
             val file = File(imagesFolder,
                 "quottable-${System.currentTimeMillis()}.png")
             val stream = FileOutputStream(file)
