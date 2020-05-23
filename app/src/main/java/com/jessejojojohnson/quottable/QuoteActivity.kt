@@ -83,6 +83,16 @@ class QuoteActivity : AppCompatActivity() {
             }
         })
 
+        btnSize.setOnClickListener(object: View.OnClickListener{
+            val sizes = intArrayOf(35, 40, 25, 30)
+            var selected = 0
+            override fun onClick(v: View?) {
+                if(selected == sizes.size) selected = 0
+                etQuote.textSize = sizes[selected].toFloat()
+                selected++
+            }
+        })
+
         btnColor.setOnClickListener(object: View.OnClickListener{
             val colors = intArrayOf(
                 R.color.red,

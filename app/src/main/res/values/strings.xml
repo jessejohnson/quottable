@@ -2,10 +2,12 @@
     <string name="app_name">Quottable</string>
     <string name="default_quote">Subjective conscious mind is an analog of what we call the real world!</string>
     <string name="title_quote_activity">Quote with Quottable</string>
-    <string name="share_tooltip">Share Image</string>
+    <string name="share_tooltip">Share Quote</string>
     <string name="edit_tooltip">Toggle Edit</string>
     <string name="fonts_tooltip">Cycle Fonts</string>
     <string name="colors_tooltip">Cycle Colours</string>
     <string name="quote_content_description">Quote</string>
     <string name="backgrounds_tooltip">Cycle Backgrounds</string>
+    <string name="size_tooltip">Cycle Font Sizes</string>
+    <string name="watermark_text">said with Quottable</string>
 </resources>
