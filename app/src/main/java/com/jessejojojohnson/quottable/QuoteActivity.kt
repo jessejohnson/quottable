@@ -28,7 +28,7 @@ class QuoteActivity : AppCompatActivity() {
             etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
         }
         if(intent.hasExtra(Intent.EXTRA_SUBJECT)){
-            tvAttribution.text = intent.getStringExtra(Intent.EXTRA_SUBJECT)
+            tvAttribution.setText(intent.getStringExtra(Intent.EXTRA_SUBJECT))
         }
 
         tvWatermark.typeface = Typeface.createFromAsset(assets, "fonts/Arapey_Italic.ttf")
@@ -47,6 +47,7 @@ class QuoteActivity : AppCompatActivity() {
         btnEdit.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?){
                 etQuote.isEnabled = !etQuote.isEnabled //toggle enabled!
+                tvAttribution.isEnabled = !tvAttribution.isEnabled //do it again!
                 if(etQuote.isEnabled){
                     btnEdit.setImageResource(R.drawable.ic_done_black)
                 }else{
@@ -55,20 +56,23 @@ class QuoteActivity : AppCompatActivity() {
             }
         })
 
-        tvAttribution.setOnClickListener(object: View.OnClickListener{
-            var visible = true
-            override fun onClick(v: View?){
-                if(visible){
-                    tvAttribution.setTextColor(resources.getColor(R.color.transparent))
-                }else{
-                    tvAttribution.setTextColor(etQuote.currentTextColor)
-                }
-                visible = !visible
-            }
-        })
+//        tvAttribution.setOnClickListener(object: View.OnClickListener{
+//            var visible = true
+//            override fun onClick(v: View?){
+//                if(visible){
+//                    tvAttribution.setTextColor(resources.getColor(R.color.transparent))
+//                }else{
+//                    tvAttribution.setTextColor(etQuote.currentTextColor)
+//                }
+//                visible = !visible
+//            }
+//        })
 
         btnBackground.setOnClickListener(object: View.OnClickListener{
             val backgrounds = intArrayOf(
+                R.color.colorPrimary,
+                R.color.whiteTint,
+                R.color.red,
                 R.drawable.gal_greens,
                 R.drawable.gal_polygons,
                 R.drawable.gal_triangles,
@@ -82,6 +86,9 @@ class QuoteActivity : AppCompatActivity() {
                 R.drawable.gal_stars,
                 R.drawable.gal_white,
                 R.drawable.gal_woods,
+                R.drawable.gal_mountain_woods,
+                R.drawable.gal_winter,
+                R.drawable.gal_turner_rome,
                 R.color.colorPrimaryDark)
             var selected = 0
             override fun onClick(v: View?) {
@@ -99,7 +106,8 @@ class QuoteActivity : AppCompatActivity() {
                 "fonts/Roboto-ThinItalic.ttf",
                 "fonts/Fanwood.otf",
                 "fonts/Arapey_Italic.ttf",
-                "fonts/imfell.otf")
+                "fonts/imfell.otf",
+                "fonts/PTSerif.ttc")
             var selectedFont = 0
             override fun onClick(v: View?){
                 if(selectedFont == fonts.size) selectedFont = 0
