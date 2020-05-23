@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
+import androidx.core.view.isVisible
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -25,6 +26,9 @@ class QuoteActivity : AppCompatActivity() {
 
         if(intent.hasExtra(Intent.EXTRA_TEXT)){
             etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
+        }
+        if(intent.hasExtra(Intent.EXTRA_SUBJECT)){
+            tvAttribution.text = intent.getStringExtra(Intent.EXTRA_SUBJECT)
         }
 
         tvWatermark.typeface = Typeface.createFromAsset(assets, "fonts/Arapey_Italic.ttf")
@@ -48,6 +52,18 @@ class QuoteActivity : AppCompatActivity() {
                 }else{
                     btnEdit.setImageResource(R.drawable.ic_edit_black)
                 }
+            }
+        })
+
+        tvAttribution.setOnClickListener(object: View.OnClickListener{
+            var visible = true
+            override fun onClick(v: View?){
+                if(visible){
+                    tvAttribution.setTextColor(resources.getColor(R.color.transparent))
+                }else{
+                    tvAttribution.setTextColor(etQuote.currentTextColor)
+                }
+                visible = !visible
             }
         })
 
@@ -93,7 +109,7 @@ class QuoteActivity : AppCompatActivity() {
         })
 
         btnSize.setOnClickListener(object: View.OnClickListener{
-            val sizes = intArrayOf(35, 38, 40, 42, 25, 28, 30)
+            val sizes = intArrayOf(33, 36, 39, 41, 44, 25, 27, 30)
             var selected = 0
             override fun onClick(v: View?) {
                 if(selected == sizes.size) selected = 0
@@ -113,6 +129,7 @@ class QuoteActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 if(selected == colors.size) selected = 0
                 etQuote.setTextColor(resources.getColor(colors[selected]))
+                tvAttribution.setTextColor(resources.getColor(colors[selected]))
                 selected++
             }
         })

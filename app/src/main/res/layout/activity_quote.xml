@@ -76,6 +76,17 @@
             android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@id/ivWatermark"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
+        <TextView
+            android:id="@+id/tvAttribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="by Someone Special"
+            android:textColor="@color/white"
+            android:textAlignment="viewEnd"
+            android:gravity="end"
+            android:layout_margin="@dimen/marginSmall"
+            app:layout_constraintBottom_toTopOf="@id/tvWatermark"
+            app:layout_constraintEnd_toEndOf="parent"/>
         <ImageView
             android:id="@+id/ivWatermark"
             android:layout_width="60dp"
