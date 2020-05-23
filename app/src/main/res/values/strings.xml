@@ -7,4 +7,5 @@
     <string name="fonts_tooltip">Cycle Fonts</string>
     <string name="colors_tooltip">Cycle Colours</string>
     <string name="quote_content_description">Quote</string>
+    <string name="backgrounds_tooltip">Cycle Backgrounds</string>
 </resources>

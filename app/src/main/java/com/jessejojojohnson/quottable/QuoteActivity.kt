@@ -2,6 +2,7 @@ package com.jessejojojohnson.quottable
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Typeface
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +29,7 @@ class QuoteActivity : AppCompatActivity() {
 
         setUpGallery() //populate gallery with background image options
 
-        ivShare.setOnClickListener(object: View.OnClickListener{
+        btnShare.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 val uri = saveImage(clImageQuote.drawToBitmap())
                 val intent = Intent(Intent.ACTION_SEND)
@@ -39,14 +40,59 @@ class QuoteActivity : AppCompatActivity() {
             }
         })
 
-        ivEdit.setOnClickListener(object: View.OnClickListener{
+        btnEdit.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?){
                 etQuote.isEnabled = !etQuote.isEnabled //toggle enabled!
                 if(etQuote.isEnabled){
-                    ivEdit.setImageResource(R.drawable.ic_done_black)
+                    btnEdit.setImageResource(R.drawable.ic_done_black)
                 }else{
-                    ivEdit.setImageResource(R.drawable.ic_edit_black)
+                    btnEdit.setImageResource(R.drawable.ic_edit_black)
                 }
+            }
+        })
+
+        btnBackground.setOnClickListener(object: View.OnClickListener{
+            val backgrounds = intArrayOf(
+                R.drawable.gal_nebulous,
+                R.drawable.gal_polygons,
+                R.drawable.gal_greens,
+                R.drawable.gal_pen,
+                R.drawable.gal_triangles,
+                R.color.colorPrimaryDark)
+            var selected = 0
+            override fun onClick(v: View?) {
+                if(selected == backgrounds.size) selected = 0
+                ivBackground.setImageResource(backgrounds[selected])
+                selected++
+            }
+        })
+
+        btnFont.setOnClickListener(object: View.OnClickListener{
+            val fonts = arrayOf(
+                "fonts/Roboto-Light.ttf",
+                "fonts/Roboto-Medium.ttf",
+                "fonts/EBGaramond-Regular.ttf",
+                "fonts/Roboto-ThinItalic.ttf",
+                "fonts/Fanwood.otf",
+                "fonts/Arapey_Italic.ttf")
+            var selectedFont = 0
+            override fun onClick(v: View?){
+                if(selectedFont == fonts.size) selectedFont = 0
+                etQuote.typeface = Typeface.createFromAsset(assets, fonts[selectedFont])
+                selectedFont++
+            }
+        })
+
+        btnColor.setOnClickListener(object: View.OnClickListener{
+            val colors = intArrayOf(
+                R.color.colorAccent,
+                R.color.black,
+                R.color.white)
+            var selected = 0
+            override fun onClick(v: View?) {
+                if(selected == colors.size) selected = 0
+                etQuote.setTextColor(colors[selected])
+                selected++
             }
         })
     }

@@ -60,6 +60,7 @@
         android:numColumns="3"
         android:scrollbars="none"
         android:gravity="center"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/clImageQuote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -74,7 +75,7 @@
         android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent">
         <ImageButton
-            android:id="@+id/ivShare"
+            android:id="@+id/btnShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
@@ -82,7 +83,7 @@
             android:contentDescription="@string/share_tooltip"
             android:tooltipText="@string/share_tooltip"/>
         <ImageButton
-            android:id="@+id/ivEdit"
+            android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
@@ -90,7 +91,15 @@
             android:contentDescription="@string/edit_tooltip"
             android:tooltipText="@string/edit_tooltip"/>
         <ImageButton
-            android:id="@+id/ivFont"
+            android:id="@+id/btnBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:src="@drawable/ic_image_black"
+            android:contentDescription="@string/backgrounds_tooltip"
+            android:tooltipText="@string/backgrounds_tooltip"/>
+        <ImageButton
+            android:id="@+id/btnFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
@@ -98,7 +107,7 @@
             android:contentDescription="@string/fonts_tooltip"
             android:tooltipText="@string/fonts_tooltip"/>
         <ImageButton
-            android:id="@+id/ivColor"
+            android:id="@+id/btnColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
