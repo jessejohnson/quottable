@@ -2,6 +2,7 @@
 <resources>
     <dimen name="pictureSide">350dp</dimen>
     <dimen name="textLarge">30sp</dimen>
+    <dimen name="textMedium">20sp</dimen>
     <dimen name="marginSmall">10dp</dimen>
     <dimen name="marginLarge">20dp</dimen>
     <dimen name="paddingSmall">15dp</dimen>

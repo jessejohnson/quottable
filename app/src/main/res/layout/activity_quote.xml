@@ -28,6 +28,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/quote_content_description" />
+        <ImageView
+            android:id="@+id/ivPatternOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/quottable_pattern_2"
+            android:tint="@color/whiteTint"
+            android:tintMode="src_in"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/quote_content_description" />
         <EditText
             android:id="@+id/etQuote"
             android:layout_width="wrap_content"
@@ -50,6 +64,27 @@
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             tools:ignore="LabelFor" />
+        <TextView
+            android:id="@+id/tvWatermark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="said with Quottable"
+            android:textColor="@color/whiteTint"
+            android:textSize="20sp"
+            android:background="@color/blackTint"
+            android:padding="@dimen/paddingSmall"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@id/ivWatermark"
+            app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
+        <ImageView
+            android:id="@+id/ivWatermark"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:tint="@color/whiteTint"
+            android:layout_margin="@dimen/marginSmall"
+            app:layout_constraintEnd_toEndOf="@id/ivBackground"
+            app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <GridView

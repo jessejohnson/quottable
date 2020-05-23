@@ -27,7 +27,7 @@ class QuoteActivity : AppCompatActivity() {
             etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
         }
 
-        setUpGallery() //populate gallery with background image options
+        tvWatermark.typeface = Typeface.createFromAsset(assets, "fonts/Arapey_Italic.ttf")
 
         btnShare.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
@@ -92,9 +92,6 @@ class QuoteActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 if(selected == colors.size) selected = 0
                 etQuote.setTextColor(resources.getColor(colors[selected]))
-                Toast.makeText(this@QuoteActivity,
-                    "selected = $selected"
-                    , Toast.LENGTH_SHORT).show()
                 selected++
             }
         })
