@@ -53,11 +53,19 @@ class QuoteActivity : AppCompatActivity() {
 
         btnBackground.setOnClickListener(object: View.OnClickListener{
             val backgrounds = intArrayOf(
-                R.drawable.gal_nebulous,
-                R.drawable.gal_polygons,
                 R.drawable.gal_greens,
-                R.drawable.gal_pen,
+                R.drawable.gal_polygons,
                 R.drawable.gal_triangles,
+                R.drawable.gal_clouds,
+                R.drawable.gal_pen,
+                R.drawable.gal_heart,
+                R.drawable.gal_hearts,
+                R.drawable.gal_nebulous,
+                R.drawable.gal_storm,
+                R.drawable.gal_storm_2,
+                R.drawable.gal_stars,
+                R.drawable.gal_white,
+                R.drawable.gal_woods,
                 R.color.colorPrimaryDark)
             var selected = 0
             override fun onClick(v: View?) {
@@ -74,7 +82,8 @@ class QuoteActivity : AppCompatActivity() {
                 "fonts/EBGaramond-Regular.ttf",
                 "fonts/Roboto-ThinItalic.ttf",
                 "fonts/Fanwood.otf",
-                "fonts/Arapey_Italic.ttf")
+                "fonts/Arapey_Italic.ttf",
+                "fonts/imfell.otf")
             var selectedFont = 0
             override fun onClick(v: View?){
                 if(selectedFont == fonts.size) selectedFont = 0
@@ -84,7 +93,7 @@ class QuoteActivity : AppCompatActivity() {
         })
 
         btnSize.setOnClickListener(object: View.OnClickListener{
-            val sizes = intArrayOf(35, 40, 25, 30)
+            val sizes = intArrayOf(35, 38, 40, 42, 25, 28, 30)
             var selected = 0
             override fun onClick(v: View?) {
                 if(selected == sizes.size) selected = 0
@@ -97,6 +106,8 @@ class QuoteActivity : AppCompatActivity() {
             val colors = intArrayOf(
                 R.color.red,
                 R.color.black,
+                R.color.yellow,
+                R.color.colorPrimary,
                 R.color.white)
             var selected = 0
             override fun onClick(v: View?) {

@@ -6,6 +6,7 @@
     <color name="black">#333333</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#D81B60</color>
+    <color name="yellow">#FDD835</color>
     <color name="transparent">#000000FF</color>
     <color name="whiteTint">#34FFFFFF</color>
     <color name="watermarkTint">#66FFFFFF</color>
