@@ -85,13 +85,16 @@ class QuoteActivity : AppCompatActivity() {
 
         btnColor.setOnClickListener(object: View.OnClickListener{
             val colors = intArrayOf(
-                R.color.colorAccent,
+                R.color.red,
                 R.color.black,
                 R.color.white)
             var selected = 0
             override fun onClick(v: View?) {
                 if(selected == colors.size) selected = 0
-                etQuote.setTextColor(colors[selected])
+                etQuote.setTextColor(resources.getColor(colors[selected]))
+                Toast.makeText(this@QuoteActivity,
+                    "selected = $selected"
+                    , Toast.LENGTH_SHORT).show()
                 selected++
             }
         })
