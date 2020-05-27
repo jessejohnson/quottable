@@ -77,10 +77,10 @@
             app:layout_constraintEnd_toStartOf="@id/ivWatermark"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
         <EditText
-            android:id="@+id/tvAttribution"
+            android:id="@+id/etAttribution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="by Someone Special"
+            android:text="@string/default_attribution"
             android:textColor="@color/white"
             android:background="@color/transparent"
             android:enabled="false"

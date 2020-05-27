@@ -27,7 +27,7 @@ class QuoteActivity : AppCompatActivity() {
             etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
         }
         if(intent.hasExtra(Intent.EXTRA_SUBJECT)){
-            tvAttribution.setText(intent.getStringExtra(Intent.EXTRA_SUBJECT))
+            etAttribution.setText(intent.getStringExtra(Intent.EXTRA_SUBJECT))
         }
 
         tvWatermark.typeface = Typeface.createFromAsset(assets, "fonts/Arapey_Italic.ttf")
@@ -46,7 +46,7 @@ class QuoteActivity : AppCompatActivity() {
         btnEdit.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?){
                 etQuote.isEnabled = !etQuote.isEnabled //toggle enabled!
-                tvAttribution.isEnabled = !tvAttribution.isEnabled //do it again!
+                etAttribution.isEnabled = !etAttribution.isEnabled //do it again!
                 if(etQuote.isEnabled){
                     btnEdit.setImageResource(R.drawable.ic_done_black)
                 }else{
@@ -139,7 +139,7 @@ class QuoteActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 if(selected == colors.size) selected = 0
                 etQuote.setTextColor(resources.getColor(colors[selected]))
-                tvAttribution.setTextColor(resources.getColor(colors[selected]))
+                etAttribution.setTextColor(resources.getColor(colors[selected]))
                 selected++
             }
         })
