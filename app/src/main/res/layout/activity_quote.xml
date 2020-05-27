@@ -32,7 +32,7 @@
             android:id="@+id/ivPatternOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/quottable_pattern_2"
+            android:src="@drawable/quottable_pattern"
             android:tint="@color/whiteTint"
             android:tintMode="src_in"
             android:adjustViewBounds="true"

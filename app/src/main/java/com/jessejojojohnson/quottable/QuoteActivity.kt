@@ -12,7 +12,6 @@ import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
-import androidx.core.view.isVisible
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -84,9 +83,9 @@ class QuoteActivity : AppCompatActivity() {
                 R.drawable.gal_hearts,
                 R.drawable.gal_nebulous,
                 R.drawable.gal_storm,
-                R.drawable.gal_storm_2,
+                R.drawable.gal_fire_storm,
                 R.drawable.gal_stars,
-                R.drawable.gal_white,
+                R.drawable.gal_white_bokeh,
                 R.drawable.gal_woods,
                 R.drawable.gal_mountain_woods,
                 R.drawable.gal_winter,
