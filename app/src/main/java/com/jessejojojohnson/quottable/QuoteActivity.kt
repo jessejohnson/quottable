@@ -79,6 +79,7 @@ class QuoteActivity : AppCompatActivity() {
                 R.drawable.gal_clouds,
                 R.drawable.gal_clouds_light,
                 R.drawable.gal_pen,
+                R.drawable.gal_script,
                 R.drawable.gal_heart,
                 R.drawable.gal_hearts,
                 R.drawable.gal_nebulous,
@@ -118,7 +119,7 @@ class QuoteActivity : AppCompatActivity() {
         })
 
         btnSize.setOnClickListener(object: View.OnClickListener{
-            val sizes = intArrayOf(33, 36, 39, 41, 44, 25, 27, 30)
+            val sizes = intArrayOf(33, 36, 39, 41, 44, 18, 20, 23, 25, 27, 30)
             var selected = 0
             override fun onClick(v: View?) {
                 if(selected == sizes.size) selected = 0
