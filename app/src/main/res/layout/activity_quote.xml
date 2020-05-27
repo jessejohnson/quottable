@@ -12,6 +12,7 @@
         android:layout_height="@dimen/pictureSide"
         android:layout_gravity="center|top"
         android:layout_margin="@dimen/marginSmall"
+        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
