@@ -111,30 +111,6 @@
             app:layout_constraintEnd_toEndOf="@id/ivBackground"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <ImageButton
-        android:id="@+id/btnPickImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_photo"
-        android:background="@color/transparent"
-        android:layout_margin="@dimen/marginSmall"
-        android:contentDescription="@string/add_image_tooltip"
-        android:tooltipText="@string/add_image_tooltip"
-        app:layout_constraintTop_toBottomOf="@id/clImageQuote"
-        app:layout_constraintEnd_toEndOf="@id/clImageQuote"/>
-    <GridView
-        android:id="@+id/lvGallery"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/galleryHeight"
-        android:layout_margin="@dimen/marginSmall"
-        android:numColumns="3"
-        android:scrollbars="none"
-        android:gravity="center"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/clImageQuote"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
     <LinearLayout
         android:id="@+id/llToolbar"
         android:layout_width="match_parent"
@@ -161,13 +137,13 @@
             android:contentDescription="@string/edit_tooltip"
             android:tooltipText="@string/edit_tooltip"/>
         <ImageButton
-            android:id="@+id/btnBackground"
+            android:id="@+id/btnPickImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:src="@drawable/ic_image_black"
-            android:contentDescription="@string/backgrounds_tooltip"
-            android:tooltipText="@string/backgrounds_tooltip"/>
+            android:src="@drawable/ic_add_photo"
+            android:contentDescription="@string/add_image_tooltip"
+            android:tooltipText="@string/add_image_tooltip"/>
         <ImageButton
             android:id="@+id/btnFont"
             android:layout_width="wrap_content"

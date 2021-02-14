@@ -77,39 +77,6 @@ class QuoteActivity : AppCompatActivity() {
             }
         })
 
-        btnBackground.setOnClickListener(object: View.OnClickListener{
-            val backgrounds = intArrayOf(
-                R.color.colorPrimary,
-                R.color.whiteTint,
-                R.color.red,
-                R.drawable.gal_greens,
-                R.drawable.gal_parchment,
-                R.drawable.gal_polygons,
-                R.drawable.gal_triangles,
-                R.drawable.gal_clouds,
-                R.drawable.gal_clouds_light,
-                R.drawable.gal_pen,
-                R.drawable.gal_script,
-                R.drawable.gal_heart,
-                R.drawable.gal_hearts,
-                R.drawable.gal_nebulous,
-                R.drawable.gal_storm,
-                R.drawable.gal_fire_storm,
-                R.drawable.gal_stars,
-                R.drawable.gal_white_bokeh,
-                R.drawable.gal_woods,
-                R.drawable.gal_mountain_woods,
-                R.drawable.gal_winter,
-                R.drawable.gal_turner_rome,
-                R.color.colorPrimaryDark)
-            var selected = 0
-            override fun onClick(v: View?) {
-                if(selected == backgrounds.size) selected = 0
-                ivBackground.setImageResource(backgrounds[selected])
-                selected++
-            }
-        })
-
         btnFont.setOnClickListener(object: View.OnClickListener{
             val fonts = arrayOf(
                 "fonts/Roboto-Light.ttf",
@@ -148,13 +115,7 @@ class QuoteActivity : AppCompatActivity() {
             var selected = 0
             override fun onClick(v: View?) {
                 if(selected == colors.size) selected = 0
-                if(selected == colors.lastIndex){
-                    ivImageMask.setImageResource(R.color.blackTint)
-                }else{
-                    ivImageMask.setImageResource(R.color.transparent)
-                }
-                etQuote.setTextColor(resources.getColor(colors[selected]))
-                etAttribution.setTextColor(resources.getColor(colors[selected]))
+                ivBackground.setImageResource(colors[selected])
                 selected++
             }
         })
@@ -192,32 +153,6 @@ class QuoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpGallery(){
-        val galleryIds: IntArray = intArrayOf(
-            R.drawable.gal_nebulous,
-            R.drawable.gal_polygons,
-            R.drawable.gal_greens,
-            R.drawable.gal_pen,
-            R.drawable.gal_triangles)
-        val from: Array<String> = arrayOf("image")
-        val to: IntArray = intArrayOf(R.id.imageView)
-        val galleryData = ArrayList<MutableMap<String, Int>>()
-        galleryIds.forEach {
-            val map = HashMap<String, Int>()
-            map["image"] = it
-            galleryData.add(map)
-        }
-        val galleryAdapter = SimpleAdapter(this,
-            galleryData, R.layout.gallery_item, from, to)
-        lvGallery.adapter = galleryAdapter
-        lvGallery.onItemClickListener = object: AdapterView.OnItemClickListener{
-            override fun onItemClick(parent: AdapterView<*>?, view: View?,
-                                     position: Int, id: Long){
-                ivBackground.setImageResource(galleryIds[position])
-            }
-        }
-    }
-
     private fun saveImage(image: Bitmap): Uri?{
         var uri: Uri? = null
         try {
@@ -230,7 +165,7 @@ class QuoteActivity : AppCompatActivity() {
             stream.flush()
             stream.close()
             uri = FileProvider.getUriForFile(this,
-                "com.jessejojojohnson.fileprovider", file)
+                "com.jessejojojohnson.quottable.fileprovider", file)
         }catch (e: IOException){
             Toast.makeText(this,
                 "Quottable could not create the file! ☹️",
