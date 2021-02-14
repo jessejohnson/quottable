@@ -1,23 +1,32 @@
 package com.jessejojojohnson.quottable
 
+import android.Manifest
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.AdapterView
 import android.widget.SimpleAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
+import kotlinx.android.synthetic.main.activity_quote.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import kotlinx.android.synthetic.main.activity_quote.*
 
 class QuoteActivity : AppCompatActivity() {
+
+    private val PERMISSION_REQUEST_ALL_NECESSARY = 9091
+    private val PICK_IMAGE = 19081
+    private val REQUIRED_PERMISSIONS = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +40,19 @@ class QuoteActivity : AppCompatActivity() {
         }
 
         tvWatermark.typeface = Typeface.createFromAsset(assets, "fonts/Arapey_Italic.ttf")
+
+        btnPickImage.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?){
+                if(checkPermissionsAndRequest(this@QuoteActivity, REQUIRED_PERMISSIONS,
+                        PERMISSION_REQUEST_ALL_NECESSARY)){
+                    getMedia()
+                }else{
+                    Toast.makeText(this@QuoteActivity,
+                        "No permissions media️",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
 
         btnShare.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
@@ -54,18 +76,6 @@ class QuoteActivity : AppCompatActivity() {
                 }
             }
         })
-
-//        tvAttribution.setOnClickListener(object: View.OnClickListener{
-//            var visible = true
-//            override fun onClick(v: View?){
-//                if(visible){
-//                    tvAttribution.setTextColor(resources.getColor(R.color.transparent))
-//                }else{
-//                    tvAttribution.setTextColor(etQuote.currentTextColor)
-//                }
-//                visible = !visible
-//            }
-//        })
 
         btnBackground.setOnClickListener(object: View.OnClickListener{
             val backgrounds = intArrayOf(
@@ -138,11 +148,48 @@ class QuoteActivity : AppCompatActivity() {
             var selected = 0
             override fun onClick(v: View?) {
                 if(selected == colors.size) selected = 0
+                if(selected == colors.lastIndex){
+                    ivImageMask.setImageResource(R.color.blackTint)
+                }else{
+                    ivImageMask.setImageResource(R.color.transparent)
+                }
                 etQuote.setTextColor(resources.getColor(colors[selected]))
                 etAttribution.setTextColor(resources.getColor(colors[selected]))
                 selected++
             }
         })
+    }
+
+    private fun getMedia(){
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        if(intent.resolveActivity(packageManager) != null){
+            startActivityForResult(intent, PICK_IMAGE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK){
+            if(data != null && data.data != null){
+                ivBackground.setImageURI(data.data)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+        if (requestCode == PERMISSION_REQUEST_ALL_NECESSARY) {
+            if (!hasPermissions(this, *REQUIRED_PERMISSIONS)){
+                //no permissions granted!
+                val builder =
+                    AlertDialog.Builder(this)
+                builder.setMessage("Quottable need permission to pick images from your gallery")
+                    .setTitle("We Don't Have Permission!")
+                    .setPositiveButton(android.R.string.ok, null)
+                    .show()
+            }else{
+                getMedia()
+            }
+        }
     }
 
     private fun setUpGallery(){

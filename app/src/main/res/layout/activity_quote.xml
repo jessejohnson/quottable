@@ -42,6 +42,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/quote_content_description" />
+        <ImageView
+            android:id="@+id/ivImageMask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/blackTint"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/quote_content_description" />
         <EditText
             android:id="@+id/etQuote"
             android:layout_width="wrap_content"
@@ -99,7 +111,17 @@
             app:layout_constraintEnd_toEndOf="@id/ivBackground"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <ImageButton
+        android:id="@+id/btnPickImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_photo"
+        android:background="@color/transparent"
+        android:layout_margin="@dimen/marginSmall"
+        android:contentDescription="@string/add_image_tooltip"
+        android:tooltipText="@string/add_image_tooltip"
+        app:layout_constraintTop_toBottomOf="@id/clImageQuote"
+        app:layout_constraintEnd_toEndOf="@id/clImageQuote"/>
     <GridView
         android:id="@+id/lvGallery"
         android:layout_width="match_parent"

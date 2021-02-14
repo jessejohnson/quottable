@@ -11,4 +11,5 @@
     <string name="size_tooltip">Cycle Font Sizes</string>
     <string name="watermark_text">said with Quottable</string>
     <string name="default_attribution">by Julian Jaynes</string>
+    <string name="add_image_tooltip">Add image</string>
 </resources>
