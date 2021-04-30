@@ -16,10 +16,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
+import com.google.android.material.slider.Slider
 import kotlinx.android.synthetic.main.activity_quote.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import kotlin.math.roundToInt
 
 class QuoteActivity : AppCompatActivity() {
 
@@ -57,6 +59,23 @@ class QuoteActivity : AppCompatActivity() {
         }
 
         tvWatermark.typeface =  Typeface.createFromAsset(assets, fonts[selectedFont])
+        etQuote.textSize = fontSizeSlider.value
+        ivImageMask.drawable.alpha = maskOverlaySlider.value.toInt()
+
+        fontSizeSlider.setLabelFormatter {value: Float ->
+            return@setLabelFormatter "Size: ${value.roundToInt()}"
+        }
+        fontSizeSlider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
+            etQuote.textSize = value
+        })
+
+        maskOverlaySlider.setLabelFormatter {value: Float ->
+            val percentage = (value/maskOverlaySlider.valueTo)*100
+            return@setLabelFormatter "Overlay: ${percentage.roundToInt()}%"
+        }
+        maskOverlaySlider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
+            ivImageMask.drawable.alpha = value.roundToInt()
+        })
 
         fabShare.setOnClickListener {
             val uri = saveImage(clImageQuote.drawToBitmap())

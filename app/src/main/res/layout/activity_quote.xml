@@ -50,7 +50,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/quote_content_description"
             android:scaleType="centerCrop"
-            android:src="@color/blackTint"
+            android:src="@color/pure_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
             android:textAlignment="viewEnd"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etQuote"/>
+            app:layout_constraintBottom_toTopOf="@id/ivWatermark"/>
         <ImageView
             android:id="@+id/ivWatermark"
             android:layout_width="55dp"
@@ -111,6 +111,29 @@
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"
             app:layout_constraintEnd_toEndOf="@id/ivBackground"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.slider.Slider
+        android:id="@+id/fontSizeSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginLarge"
+        android:layout_marginEnd="@dimen/marginLarge"
+        android:valueFrom="20.0"
+        android:valueTo="60.0"
+        android:value="30.0"
+        android:stepSize="5"
+        app:layout_constraintTop_toBottomOf="@id/clImageQuote"/>
+    <com.google.android.material.slider.Slider
+        android:id="@+id/maskOverlaySlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginLarge"
+        android:layout_marginEnd="@dimen/marginLarge"
+        app:haloColor="@color/black"
+        android:theme="@style/MaskOverlaySliderTheme"
+        android:valueFrom="0"
+        android:valueTo="255"
+        android:value="85"
+        app:layout_constraintTop_toBottomOf="@id/fontSizeSlider"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabShare"
         android:layout_width="wrap_content"
