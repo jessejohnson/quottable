@@ -9,11 +9,11 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
 import kotlinx.android.synthetic.main.activity_quote.*
@@ -27,6 +27,23 @@ class QuoteActivity : AppCompatActivity() {
     private val PICK_IMAGE = 19081
     private val REQUIRED_PERMISSIONS = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE)
+    private val fonts = arrayOf(
+        "fonts/Roboto-Light.ttf",
+        "fonts/Roboto-Medium.ttf",
+        "fonts/EBGaramond-Regular.ttf",
+        "fonts/Roboto-ThinItalic.ttf",
+        "fonts/Fanwood.otf",
+        "fonts/Arapey_Italic.ttf",
+        "fonts/imfell.otf",
+        "fonts/PTSerif.ttc")
+    private val colors = intArrayOf(
+        R.color.red,
+        R.color.black,
+        R.color.yellow,
+        R.color.colorPrimary,
+        R.color.white)
+    private var selectedFont = 0
+    private var selectedColor = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,86 +56,58 @@ class QuoteActivity : AppCompatActivity() {
             etAttribution.setText(intent.getStringExtra(Intent.EXTRA_SUBJECT))
         }
 
-        tvWatermark.typeface = Typeface.createFromAsset(assets, "fonts/Arapey_Italic.ttf")
+        tvWatermark.typeface =  Typeface.createFromAsset(assets, fonts[selectedFont])
 
-        btnPickImage.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
-                if(checkPermissionsAndRequest(this@QuoteActivity, REQUIRED_PERMISSIONS,
-                        PERMISSION_REQUEST_ALL_NECESSARY)){
-                    getMedia()
-                }else{
-                    Toast.makeText(this@QuoteActivity,
-                        "No permissions media️",
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
+        fabShare.setOnClickListener {
+            val uri = saveImage(clImageQuote.drawToBitmap())
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            intent.type = "image/png"
+            startActivity(intent)
+        }
 
-        btnShare.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                val uri = saveImage(clImageQuote.drawToBitmap())
-                val intent = Intent(Intent.ACTION_SEND)
-                intent.putExtra(Intent.EXTRA_STREAM, uri)
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                intent.type = "image/png"
-                startActivity(intent)
+        bottomBar.setOnMenuItemClickListener { item ->
+            when(item.itemId){
+                R.id.menu_edit_text -> toggleEdit(item)
+                R.id.menu_cycle_backgrounds -> cycleBackgroundColours()
+                R.id.menu_cycle_fonts -> cycleFonts()
+                R.id.menu_pick_image -> pickImage()
             }
-        })
+            return@setOnMenuItemClickListener true
+        }
+    }
 
-        btnEdit.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
-                etQuote.isEnabled = !etQuote.isEnabled //toggle enabled!
-                etAttribution.isEnabled = !etAttribution.isEnabled //do it again!
-                if(etQuote.isEnabled){
-                    btnEdit.setImageResource(R.drawable.ic_done_black)
-                }else{
-                    btnEdit.setImageResource(R.drawable.ic_edit_black)
-                }
-            }
-        })
+    private fun toggleEdit(item: MenuItem){
+        etQuote.isEnabled = !etQuote.isEnabled //toggle enabled!
+        etAttribution.isEnabled = !etAttribution.isEnabled //do it again!
+        if (etQuote.isEnabled) {
+            item.icon = ContextCompat.getDrawable(this, R.drawable.ic_done_black)
+        } else {
+            item.icon = ContextCompat.getDrawable(this, R.drawable.ic_edit_black)
+        }
+    }
 
-        btnFont.setOnClickListener(object: View.OnClickListener{
-            val fonts = arrayOf(
-                "fonts/Roboto-Light.ttf",
-                "fonts/Roboto-Medium.ttf",
-                "fonts/EBGaramond-Regular.ttf",
-                "fonts/Roboto-ThinItalic.ttf",
-                "fonts/Fanwood.otf",
-                "fonts/Arapey_Italic.ttf",
-                "fonts/imfell.otf",
-                "fonts/PTSerif.ttc")
-            var selectedFont = 0
-            override fun onClick(v: View?){
-                if(selectedFont == fonts.size) selectedFont = 0
-                etQuote.typeface = Typeface.createFromAsset(assets, fonts[selectedFont])
-                selectedFont++
-            }
-        })
+    private fun cycleBackgroundColours(){
+        if(selectedColor == colors.size) selectedColor = 0
+        ivBackground.setImageResource(colors[selectedColor])
+        selectedColor++
+    }
 
-        btnSize.setOnClickListener(object: View.OnClickListener{
-            val sizes = intArrayOf(33, 36, 39, 41, 44, 18, 20, 23, 25, 27, 30)
-            var selected = 0
-            override fun onClick(v: View?) {
-                if(selected == sizes.size) selected = 0
-                etQuote.textSize = sizes[selected].toFloat()
-                selected++
-            }
-        })
+    private fun cycleFonts(){
+        if(selectedFont == fonts.size) selectedFont = 0
+        etQuote.typeface = Typeface.createFromAsset(assets, fonts[selectedFont])
+        selectedFont++
+    }
 
-        btnColor.setOnClickListener(object: View.OnClickListener{
-            val colors = intArrayOf(
-                R.color.red,
-                R.color.black,
-                R.color.yellow,
-                R.color.colorPrimary,
-                R.color.white)
-            var selected = 0
-            override fun onClick(v: View?) {
-                if(selected == colors.size) selected = 0
-                ivBackground.setImageResource(colors[selected])
-                selected++
-            }
-        })
+    private fun pickImage(){
+        if(checkPermissionsAndRequest(this@QuoteActivity, REQUIRED_PERMISSIONS,
+                PERMISSION_REQUEST_ALL_NECESSARY)){
+            getMedia()
+        }else{
+            Toast.makeText(this@QuoteActivity,
+                "Quottable needs your permission to do this!️", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun getMedia(){
@@ -143,7 +132,7 @@ class QuoteActivity : AppCompatActivity() {
                 //no permissions granted!
                 val builder =
                     AlertDialog.Builder(this)
-                builder.setMessage("Quottable need permission to pick images from your gallery")
+                builder.setMessage("Quottable needs permission to pick images from your gallery")
                     .setTitle("We Don't Have Permission!")
                     .setPositiveButton(android.R.string.ok, null)
                     .show()
