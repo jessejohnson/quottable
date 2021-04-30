@@ -8,6 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="RoundedShapeAppearanceOverlay" parent="">
-        <item name="cornerSize">5%</item>
+        <item name="cornerSize">3%</item>
     </style>
 </resources>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Quottable</string>
-    <string name="default_quote">Subjective conscious mind is an analog of what we call the real world!</string>
+    <string name="default_quote">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</string>
+    <string name="default_attribution">~ anon</string>
     <string name="title_quote_activity">Quote with Quottable</string>
     <string name="share_tooltip">Share Quote</string>
     <string name="edit_tooltip">Toggle Edit</string>
@@ -10,6 +11,5 @@
     <string name="backgrounds_tooltip">Cycle Backgrounds</string>
     <string name="size_tooltip">Cycle Font Sizes</string>
     <string name="watermark_text">said with Quottable</string>
-    <string name="default_attribution">by Julian Jaynes</string>
     <string name="add_image_tooltip">Add image</string>
 </resources>

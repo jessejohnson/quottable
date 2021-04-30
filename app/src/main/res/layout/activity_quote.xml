@@ -11,24 +11,25 @@
         android:layout_width="@dimen/pictureSide"
         android:layout_height="@dimen/pictureSide"
         android:layout_gravity="center|top"
-        android:layout_margin="@dimen/marginSmall"
+        android:layout_marginTop="@dimen/marginLarge"
         android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@color/colorPrimaryDark"
+            app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/quote_content_description" />
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivPatternOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,18 +38,20 @@
             android:tintMode="src_in"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/quote_content_description" />
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivImageMask"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@color/blackTint"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/RoundedShapeAppearanceOverlay"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,9 +86,8 @@
             android:text="@string/watermark_text"
             android:textColor="@color/watermarkTint"
             android:textSize="20sp"
-            android:background="@color/blackTint"
             android:padding="@dimen/marginSmall"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@id/ivWatermark"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
         <EditText
@@ -98,15 +100,14 @@
             android:enabled="false"
             android:textAlignment="viewEnd"
             android:gravity="end"
-            android:layout_margin="@dimen/marginSmall"
-            app:layout_constraintBottom_toTopOf="@id/tvWatermark"
+            android:layout_marginEnd="@dimen/marginSmall"
+            app:layout_constraintTop_toBottomOf="@id/etQuote"
             app:layout_constraintEnd_toEndOf="parent"/>
         <ImageView
             android:id="@+id/ivWatermark"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:src="@mipmap/ic_launcher_round"
-            android:tint="@color/whiteTint"
             android:padding="@dimen/marginSmall"
             app:layout_constraintEnd_toEndOf="@id/ivBackground"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"/>
