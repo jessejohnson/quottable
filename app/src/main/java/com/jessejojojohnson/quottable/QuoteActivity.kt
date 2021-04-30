@@ -42,6 +42,7 @@ class QuoteActivity : AppCompatActivity() {
         R.color.red,
         R.color.black,
         R.color.yellow,
+        R.color.orange,
         R.color.colorPrimary,
         R.color.white)
     private var selectedFont = 0
