@@ -126,7 +126,7 @@ class QuoteActivity : AppCompatActivity() {
             getMedia()
         }else{
             Toast.makeText(this@QuoteActivity,
-                "Quottable needs your permission to do this!️", Toast.LENGTH_SHORT).show()
+                "Quottable needs your permission to do this!.", Toast.LENGTH_SHORT).show()
         }
     }
 
