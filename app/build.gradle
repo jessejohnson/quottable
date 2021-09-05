@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.asarkar.gradle.build-time-tracker'
+apply plugin: 'net.rdrei.android.buildtimetracker'
 
 android {
     compileSdkVersion 29
@@ -23,8 +23,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
+
+buildtimetracker {
+    reporters {
+        csv {
+            output "build/times.csv"
+            append true
+            header false
+        }
+        summary {
+            ordered false
+            threshold 50
+            barstyle "unicode"
+        }
+        csvSummary {
+            csv "build/times.csv"
+        }
+    }
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
