@@ -29,8 +29,8 @@ buildtimetracker {
     reporters {
         csv {
             output "build/times.csv"
-            append true
-            header false
+            append false
+            header true
         }
         summary {
             ordered false
