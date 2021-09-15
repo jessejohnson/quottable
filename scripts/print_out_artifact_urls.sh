@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #access token can be generated here(https://app.bitrise.io/me/profile#/security) and stored as secret
 access_token=$BITRISE_API_ACCESS_TOKEN
-app_slug="your-app-id" # the id of your app
+app_slug="6d0bfba23d81e836" # the id of your app
 build_slug=$BITRISE_BUILD_SLUG
 
 bitrise_api_url="https://api.bitrise.io/v0.1"
