@@ -1,7 +1,7 @@
-import glob, os
+import glob, os, sys
 from bs4 import BeautifulSoup
 
-REPORT_PATH = "../build/reports/profile/"
+REPORT_PATH = sys.argv[1] #default path/to/report is ../build/reports/profile/
 os.chdir(REPORT_PATH)
 REPORT_FILE = glob.glob("*.html")[0]
 
