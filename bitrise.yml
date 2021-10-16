@@ -115,8 +115,8 @@ workflows:
       - build-router-start@0:
           inputs:
             - workflows: |-
-                - lint_workflow
-                - unittest_workflow
+                lint_workflow
+                unittest_workflow
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
       - build-router-wait@0:
           inputs:
