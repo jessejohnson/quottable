@@ -101,7 +101,7 @@ workflows:
     - cache-push@2: {}
     before_run:
     - profile
-  primary-fan-out:
+  primary_fan_out:
     steps:
       - activate-ssh-key@4:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
@@ -115,8 +115,8 @@ workflows:
       - build-router-start@0:
           inputs:
             - workflows: |-
-                - lint-workflow
-                - unit-test-workflow
+                - lint_workflow
+                - unittest_workflow
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
       - build-router-wait@0:
           inputs:
@@ -126,7 +126,7 @@ workflows:
             - deploy_path: "$PROJECT_LOCATION/build/times.csv"
       - deploy-to-bitrise-io@1: { }
       - cache-push@2: { }
-  lint-workflow:
+  lint_workflow:
     steps:
       - cache-pull@2: {}
       - android-lint@0:
@@ -134,7 +134,7 @@ workflows:
             - project_location: "$PROJECT_LOCATION"
             - module: "$MODULE"
             - variant: "$VARIANT"
-  unit-test-workflow:
+  unittest_workflow:
     steps:
       - cach-pull@2: {}
       - android-unit-test@1:
