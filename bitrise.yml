@@ -112,10 +112,7 @@ workflows:
       - install-missing-android-tools@2:
           inputs:
             - gradlew_path: "$PROJECT_LOCATION/gradlew"
-      - cache-push@2:
-          inputs:
-            - cache-paths: |-
-                - $$PROJECT_LOCATION
+      - cache-push@2: {}
       - build-router-start@0:
           inputs:
             - workflows: |-
