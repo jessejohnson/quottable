@@ -132,6 +132,7 @@ workflows:
             - project_location: "$PROJECT_LOCATION"
             - module: "$MODULE"
             - variant: "$VARIANT"
+      - cache-push@2: { }
   unittest_workflow:
     steps:
       - cach-pull@2: {}
@@ -140,6 +141,7 @@ workflows:
             - project_location: "$PROJECT_LOCATION"
             - module: "$MODULE"
             - variant: "$VARIANT"
+      - cache-push@2: { }
   profile:
     steps:
     - activate-ssh-key@4:
