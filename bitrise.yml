@@ -126,10 +126,13 @@ workflows:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
             - save_path: "$BITRISE_DEPLOY_DIR"
+#      - deploy-to-bitrise-io@1:
+#          inputs:
+#            - deploy_path: "$PROJECT_LOCATION/build/times.csv"
+#      - deploy-to-bitrise-io@1: { }
       - deploy-to-bitrise-io@1:
           inputs:
-            - deploy_path: "$PROJECT_LOCATION/build/times.csv"
-      - deploy-to-bitrise-io@1: { }
+            - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
       - cache-push@2: { }
   lint_workflow:
     steps:
