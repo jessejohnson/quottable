@@ -133,6 +133,7 @@ workflows:
       - deploy-to-bitrise-io@1:
           inputs:
             - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
+            - is_compress: 'true'
       - cache-push@2: { }
   lint_workflow:
     steps:
