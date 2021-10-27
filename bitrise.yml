@@ -125,7 +125,7 @@ workflows:
       - git::https://github.com/DamienBitrise/bitrise-collect-artifacts.git@master:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
-            - save_path: "$BITRISE_DEPLOY_DIR
+            - save_path: "$BITRISE_DEPLOY_DIR"
       - deploy-to-bitrise-io@1:
           inputs:
             - deploy_path: "$PROJECT_LOCATION/build/times.csv"
