@@ -1,7 +1,9 @@
 #!/bin/bash
 set -ex
 
-pip install --verbose beautifulsoup4 requests
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+python get-pip.py
+pip2 install --verbose beautifulsoup4 requests
 pip2 --version
 pip --version
 python --version
