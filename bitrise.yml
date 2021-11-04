@@ -130,10 +130,15 @@ workflows:
 #          inputs:
 #            - deploy_path: "$PROJECT_LOCATION/build/times.csv"
 #      - deploy-to-bitrise-io@1: { }
+      - script@1:
+          title: "Echo BITRISE_ARTIFACTS_SAVE_PATH"
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                echo $BITRISE_ARTIFACTS_SAVE_PATH
       - deploy-to-bitrise-io@1:
           inputs:
             - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
-            - is_compress: 'true'
       - cache-push@2: { }
   lint_workflow:
     steps:
@@ -167,29 +172,23 @@ workflows:
     - install-missing-android-tools@2:
         inputs:
         - gradlew_path: "$PROJECT_LOCATION/gradlew"
-    - script@1:
-        title: "--profile assemble"
+    - android-build@0:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            bash ./scripts/buildreport/profile_build.sh
+          - variant: debug
+          - build_type: aab
+          - module: app
+          - arguments: "--profile"
     - deploy-to-bitrise-io@2:
         inputs:
-        - is_compress: 'true'
-        - deploy_path: "$PROJECT_LOCATION/build/reports/profile/"
+          - is_compress: 'true'
+          - deploy_path: "$PROJECT_LOCATION/build/reports/profile/"
         title: Save --profile Report
     - script@1:
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            bash ./scripts/buildreport/get_profile_report_url.sh
-        title: Get Profile Report URL
-    - script@1:
-        title: Parse Profile Report
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            bash ./scripts/buildreport/parse_profile_report.sh
+          - content: |-
+              #!/bin/bash
+              bash ./scripts/buildreport/start.sh
+        title: Generate Build Report
     - slack@3:
         inputs:
         - webhook_url: "$slackwebhook"
