@@ -2,6 +2,7 @@
 set -ex
 
 pip install --verbose beautifulsoup4 requests
+pip2 --version
 pip --version
 python --version
 python2 --version
