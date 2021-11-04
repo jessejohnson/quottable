@@ -1,7 +1,8 @@
 #!/bin/bash
 set -ex
 
-pip install beautifulsoup4 requests
+pip install --verbose beautifulsoup4 requests
+pip --version
 python --version
 python2 --version
 python3 --version
