@@ -104,8 +104,6 @@ workflows:
         - deploy_path: "$PROJECT_LOCATION/build/times.csv"
     - deploy-to-bitrise-io@1: {}
     - cache-push@2: {}
-    before_run:
-    - profile
   primary_fan_out:
     steps:
       - activate-ssh-key@4:
