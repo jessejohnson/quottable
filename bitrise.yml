@@ -4,7 +4,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 trigger_map:
 - push_branch: "*"
-  workflow: profile
+  workflow: primary
 - pull_request_source_branch: "*"
   workflow: primary
 workflows:
@@ -84,6 +84,11 @@ workflows:
     - install-missing-android-tools@2:
         inputs:
         - gradlew_path: "$PROJECT_LOCATION/gradlew"
+    - android-build@0:
+        inputs:
+        - variant: debug
+        - build_type: aab
+        - module: app
     - android-lint@0:
         inputs:
         - project_location: "$PROJECT_LOCATION"
@@ -112,9 +117,12 @@ workflows:
       - install-missing-android-tools@2:
           inputs:
             - gradlew_path: "$PROJECT_LOCATION/gradlew"
-      - cache-push@2:
+      - android-build@0:
           inputs:
-            - cache_paths: "$PROJECT_LOCATION/build/"
+            - variant: debug
+            - build_type: aab
+            - module: app
+      - cache-push@2: { }
       - build-router-start@0:
           inputs:
             - workflows: |-
