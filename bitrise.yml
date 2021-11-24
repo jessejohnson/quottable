@@ -79,8 +79,6 @@ workflows:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
     - git-clone@6: {}
 #    - cache-pull@2: {}
-#    - script@1:
-#        title: Do anything with Script step
     - install-missing-android-tools@2:
         inputs:
         - gradlew_path: "$PROJECT_LOCATION/gradlew"
@@ -89,6 +87,7 @@ workflows:
         - variant: debug
         - build_type: aab
         - module: app
+        - cache_level: all
     - android-lint@0:
         inputs:
         - project_location: "$PROJECT_LOCATION"
@@ -110,8 +109,6 @@ workflows:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
       - git-clone@6: { }
 #      - cache-pull@2: { }
-#      - script@1:
-#          title: Do anything with Script step
       - install-missing-android-tools@2:
           inputs:
             - gradlew_path: "$PROJECT_LOCATION/gradlew"
@@ -120,6 +117,7 @@ workflows:
             - variant: debug
             - build_type: aab
             - module: app
+            - cache_level: all
       - cache-push@2: { }
       - build-router-start@0:
           inputs:
@@ -134,10 +132,6 @@ workflows:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
             - save_path: "$BITRISE_DEPLOY_DIR"
-#      - deploy-to-bitrise-io@1:
-#          inputs:
-#            - deploy_path: "$PROJECT_LOCATION/build/times.csv"
-#      - deploy-to-bitrise-io@1: { }
       - script@1:
           title: "Echo BITRISE_ARTIFACTS_SAVE_PATH"
           inputs:
