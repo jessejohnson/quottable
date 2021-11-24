@@ -78,9 +78,9 @@ workflows:
     - activate-ssh-key@4:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
     - git-clone@6: {}
-    - cache-pull@2: {}
-    - script@1:
-        title: Do anything with Script step
+#    - cache-pull@2: {}
+#    - script@1:
+#        title: Do anything with Script step
     - install-missing-android-tools@2:
         inputs:
         - gradlew_path: "$PROJECT_LOCATION/gradlew"
@@ -103,15 +103,15 @@ workflows:
         inputs:
         - deploy_path: "$PROJECT_LOCATION/build/times.csv"
     - deploy-to-bitrise-io@1: {}
-    - cache-push@2: {}
+#    - cache-push@2: {}
   primary_fan_out:
     steps:
       - activate-ssh-key@4:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
       - git-clone@6: { }
-      - cache-pull@2: { }
-      - script@1:
-          title: Do anything with Script step
+#      - cache-pull@2: { }
+#      - script@1:
+#          title: Do anything with Script step
       - install-missing-android-tools@2:
           inputs:
             - gradlew_path: "$PROJECT_LOCATION/gradlew"
