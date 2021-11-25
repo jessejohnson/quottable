@@ -137,7 +137,7 @@ workflows:
       - git::https://github.com/DamienBitrise/bitrise-collect-artifacts.git@master:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
-            - save_path: "$BITRISE_DEPLOY_DIR/allartifacts"
+            - save_path: "$BITRISE_DEPLOY_DIR/allartifacts/"
       - script@1:
           title: "Echo Relevant Paths"
           inputs:
