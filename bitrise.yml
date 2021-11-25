@@ -139,7 +139,7 @@ workflows:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
       - deploy-to-bitrise-io@1:
           inputs:
-            - is_compress: 'true'
+            - is_compress: 'false'
             - deploy_path: ./allartifacts/
       - deploy-to-bitrise-io@1: {}
       - cache-push@2: { }
