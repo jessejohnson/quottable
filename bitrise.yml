@@ -4,7 +4,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 trigger_map:
 - push_branch: "*"
-  workflow: primary_fan_out
+  workflow: primary
 - pull_request_source_branch: "*"
   workflow: primary
 workflows:
@@ -98,6 +98,12 @@ workflows:
         - project_location: "$PROJECT_LOCATION"
         - module: "$MODULE"
         - variant: "$VARIANT"
+    - script@1:
+        title: "Echo Relevant Paths"
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            echo $BITRISE_DEPLOY_DIR
     - deploy-to-bitrise-io@1:
         inputs:
         - deploy_path: "$PROJECT_LOCATION/build/times.csv"
