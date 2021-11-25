@@ -131,7 +131,8 @@ workflows:
                 lint_workflow
                 unittest_workflow
             - wait_for_builds: 'true'
-            - build_artifacts_save_path: "allartifacts/"
+            - verbose: 'yes'
+            - build_artifacts_save_path: ./allartifacts/
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
       - build-router-wait@0:
           inputs:
