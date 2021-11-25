@@ -131,13 +131,15 @@ workflows:
       - git::https://github.com/DamienBitrise/bitrise-collect-artifacts.git@master:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
-#            - save_path: "$BITRISE_DEPLOY_DIR"
-#      - script@1:
-#          title: "Echo BITRISE_ARTIFACTS_SAVE_PATH"
-#          inputs:
-#            - content: |-
-#                #!/usr/bin/env bash
-#                echo $BITRISE_ARTIFACTS_SAVE_PATH
+            - save_path: "$BITRISE_DEPLOY_DIR"
+      - script@1:
+          title: "Echo Relevant Paths"
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                echo $BITRISE_ARTIFACTS_SAVE_PATH
+                echo $BITRISE_DEPLOY_DIR
+                echo $ROUTER_STARTED_BUILD_SLUGS
       - deploy-to-bitrise-io@1: {}
 #          inputs:
 #            - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
