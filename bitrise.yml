@@ -146,7 +146,7 @@ workflows:
                 echo $BITRISE_ARTIFACTS_SAVE_PATH
                 echo $BITRISE_DEPLOY_DIR
                 echo $ROUTER_STARTED_BUILD_SLUGS
-      - deploy-to-bitrise-io@1: {}
+      - deploy-to-bitrise-io@1:
           inputs:
             - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
       - cache-push@2: { }
