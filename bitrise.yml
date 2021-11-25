@@ -137,7 +137,10 @@ workflows:
       - build-router-wait@0:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
-      - deploy-to-bitrise-io@1: {}
+      - deploy-to-bitrise-io@1:
+          inputs:
+            - is_compress: 'true'
+            - deploy_path: ./allartifacts/
       - cache-push@2: { }
   lint_workflow:
     steps:
