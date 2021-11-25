@@ -141,6 +141,7 @@ workflows:
           inputs:
             - is_compress: 'true'
             - deploy_path: ./allartifacts/
+      - deploy-to-bitrise-io@1: {}
       - cache-push@2: { }
   lint_workflow:
     steps:
