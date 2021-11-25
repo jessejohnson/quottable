@@ -4,7 +4,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
 trigger_map:
 - push_branch: "*"
-  workflow: primary
+  workflow: primary_fan_out
 - pull_request_source_branch: "*"
   workflow: primary
 workflows:
@@ -78,7 +78,7 @@ workflows:
     - activate-ssh-key@4:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
     - git-clone@6: {}
-#    - cache-pull@2: {}
+    - cache-pull@2: {}
     - install-missing-android-tools@2:
         inputs:
         - gradlew_path: "$PROJECT_LOCATION/gradlew"
@@ -108,13 +108,13 @@ workflows:
         inputs:
         - deploy_path: "$PROJECT_LOCATION/build/times.csv"
     - deploy-to-bitrise-io@1: {}
-#    - cache-push@2: {}
+    - cache-push@2: {}
   primary_fan_out:
     steps:
       - activate-ssh-key@4:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
       - git-clone@6: { }
-#      - cache-pull@2: { }
+      - cache-pull@2: { }
       - install-missing-android-tools@2:
           inputs:
             - gradlew_path: "$PROJECT_LOCATION/gradlew"
@@ -137,7 +137,7 @@ workflows:
       - git::https://github.com/DamienBitrise/bitrise-collect-artifacts.git@master:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
-            - save_path: "$BITRISE_DEPLOY_DIR"
+            - save_path: "$BITRISE_DEPLOY_DIR/allartifacts"
       - script@1:
           title: "Echo Relevant Paths"
           inputs:
@@ -147,8 +147,8 @@ workflows:
                 echo $BITRISE_DEPLOY_DIR
                 echo $ROUTER_STARTED_BUILD_SLUGS
       - deploy-to-bitrise-io@1: {}
-#          inputs:
-#            - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
+          inputs:
+            - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
       - cache-push@2: { }
   lint_workflow:
     steps:
