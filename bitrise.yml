@@ -130,25 +130,15 @@ workflows:
             - workflows: |-
                 lint_workflow
                 unittest_workflow
+            - wait_for_builds: 'true'
+            - build_artifacts_save_path: "allartifacts/"
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
       - build-router-wait@0:
           inputs:
             - access_token: "$BITRISE_API_ACCESS_TOKEN"
-      - git::https://github.com/mrister/bitrise-collect-artifacts.git@master:
-          inputs:
-            - access_token: "$BITRISE_API_ACCESS_TOKEN"
-            - save_path: "$BITRISE_DEPLOY_DIR"
-      - script@1:
-          title: "Echo Relevant Paths"
-          inputs:
-            - content: |-
-                #!/usr/bin/env bash
-                echo $BITRISE_ARTIFACTS_SAVE_PATH
-                echo $BITRISE_DEPLOY_DIR
-                echo $ROUTER_STARTED_BUILD_SLUGS
       - deploy-to-bitrise-io@1:
           inputs:
-            - deploy_path: "$BITRISE_ARTIFACTS_SAVE_PATH"
+            - deploy_path: "allartifacts/"
       - cache-push@2: { }
   lint_workflow:
     steps:
