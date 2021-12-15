@@ -125,6 +125,13 @@ workflows:
             - module: app
             - cache_level: all
       - cache-push@2: { }
+      - script@1:
+          title: "Create Artifacts Directory"
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                mkdir allartifacts
+                ls
       - build-router-start@0:
           inputs:
             - workflows: |-
