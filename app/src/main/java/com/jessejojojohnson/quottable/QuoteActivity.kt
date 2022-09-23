@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
 import com.google.android.material.slider.Slider
-import kotlinx.android.synthetic.main.activity_quote.*
+import com.jessejojojohnson.quottable.databinding.ActivityQuoteBinding
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -47,39 +47,42 @@ class QuoteActivity : AppCompatActivity() {
         R.color.white)
     private var selectedFont = 0
     private var selectedColor = 0
+    private val binding by lazy {
+        ActivityQuoteBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quote)
+        setContentView(binding.root)
 
         if(intent.hasExtra(Intent.EXTRA_TEXT)){
-            etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
+            binding.etQuote.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
         }
         if(intent.hasExtra(Intent.EXTRA_SUBJECT)){
-            etAttribution.setText(intent.getStringExtra(Intent.EXTRA_SUBJECT))
+            binding.etAttribution.setText(intent.getStringExtra(Intent.EXTRA_SUBJECT))
         }
 
-        tvWatermark.typeface =  Typeface.createFromAsset(assets, fonts[selectedFont])
-        etQuote.textSize = fontSizeSlider.value
-        ivImageMask.drawable.alpha = maskOverlaySlider.value.toInt()
+        binding.tvWatermark.typeface =  Typeface.createFromAsset(assets, fonts[selectedFont])
+        binding.etQuote.textSize = binding.fontSizeSlider.value
+        binding.ivImageMask.drawable.alpha = binding.maskOverlaySlider.value.toInt()
 
-        fontSizeSlider.setLabelFormatter {value: Float ->
+        binding.fontSizeSlider.setLabelFormatter {value: Float ->
             return@setLabelFormatter "Size: ${value.roundToInt()}"
         }
-        fontSizeSlider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
-            etQuote.textSize = value
+        binding.fontSizeSlider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
+            binding.etQuote.textSize = value
         })
 
-        maskOverlaySlider.setLabelFormatter {value: Float ->
-            val percentage = (value/maskOverlaySlider.valueTo)*100
+        binding.maskOverlaySlider.setLabelFormatter {value: Float ->
+            val percentage = (value/binding.maskOverlaySlider.valueTo)*100
             return@setLabelFormatter "Overlay: ${percentage.roundToInt()}%"
         }
-        maskOverlaySlider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
-            ivImageMask.drawable.alpha = value.roundToInt()
+        binding.maskOverlaySlider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
+            binding.ivImageMask.drawable.alpha = value.roundToInt()
         })
 
-        fabShare.setOnClickListener {
-            val uri = saveImage(clImageQuote.drawToBitmap())
+        binding.fabShare.setOnClickListener {
+            val uri = saveImage(binding.clImageQuote.drawToBitmap())
             val intent = Intent(Intent.ACTION_SEND)
             intent.putExtra(Intent.EXTRA_STREAM, uri)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -87,7 +90,7 @@ class QuoteActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        bottomBar.setOnMenuItemClickListener { item ->
+        binding.bottomBar.setOnMenuItemClickListener { item ->
             when(item.itemId){
                 R.id.menu_edit_text -> toggleEdit(item)
                 R.id.menu_cycle_backgrounds -> cycleBackgroundColours()
@@ -99,9 +102,9 @@ class QuoteActivity : AppCompatActivity() {
     }
 
     private fun toggleEdit(item: MenuItem){
-        etQuote.isEnabled = !etQuote.isEnabled //toggle enabled!
-        etAttribution.isEnabled = !etAttribution.isEnabled //do it again!
-        if (etQuote.isEnabled) {
+        binding.etQuote.isEnabled = !binding.etQuote.isEnabled //toggle enabled!
+        binding.etAttribution.isEnabled = !binding.etAttribution.isEnabled //do it again!
+        if (binding.etQuote.isEnabled) {
             item.icon = ContextCompat.getDrawable(this, R.drawable.ic_done_black)
         } else {
             item.icon = ContextCompat.getDrawable(this, R.drawable.ic_edit_black)
@@ -110,13 +113,13 @@ class QuoteActivity : AppCompatActivity() {
 
     private fun cycleBackgroundColours(){
         if(selectedColor == colors.size) selectedColor = 0
-        ivBackground.setImageResource(colors[selectedColor])
+        binding.ivBackground.setImageResource(colors[selectedColor])
         selectedColor++
     }
 
     private fun cycleFonts(){
         if(selectedFont == fonts.size) selectedFont = 0
-        etQuote.typeface = Typeface.createFromAsset(assets, fonts[selectedFont])
+        binding.etQuote.typeface = Typeface.createFromAsset(assets, fonts[selectedFont])
         selectedFont++
     }
 
@@ -141,12 +144,13 @@ class QuoteActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK){
             if(data != null && data.data != null){
-                ivBackground.setImageURI(data.data)
+                binding.ivBackground.setImageURI(data.data)
             }
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_ALL_NECESSARY) {
             if (!hasPermissions(this, *REQUIRED_PERMISSIONS)){
                 //no permissions granted!
