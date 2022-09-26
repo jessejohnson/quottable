@@ -2,7 +2,7 @@
     <string name="app_name">Quottable</string>
     <string name="default_quote">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</string>
     <string name="default_attribution">~ anon</string>
-    <string name="title_quote_activity">Quote with Quottable</string>
+    <string name="title_quote_activity">Say it with Quottable</string>
     <string name="share_tooltip">Share Quote</string>
     <string name="edit_tooltip">Toggle Edit</string>
     <string name="fonts_tooltip">Cycle Fonts</string>

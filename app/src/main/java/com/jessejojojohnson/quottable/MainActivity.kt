@@ -3,6 +3,7 @@ package com.jessejojojohnson.quottable
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.jessejojojohnson.quottable.ui.QuoteActivity
 
 /*
 * We'll leave MainActivity open for future modification

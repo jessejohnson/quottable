@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuoteActivity">
+    tools:context=".ui.QuoteActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clImageQuote"
         android:layout_width="@dimen/pictureSide"
@@ -72,6 +72,7 @@
             android:text="@string/default_quote"
             android:textColor="@color/white"
             android:textSize="@dimen/textLarge"
+            android:hint="Say something..."
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"
             app:layout_constraintLeft_toLeftOf="@id/ivBackground"
             app:layout_constraintRight_toRightOf="@id/ivBackground"
