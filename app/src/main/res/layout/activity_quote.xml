@@ -72,7 +72,7 @@
             android:text="@string/default_quote"
             android:textColor="@color/white"
             android:textSize="@dimen/textLarge"
-            android:hint="Say something..."
+            android:hint="@string/quote_hint"
             app:layout_constraintBottom_toBottomOf="@id/ivBackground"
             app:layout_constraintLeft_toLeftOf="@id/ivBackground"
             app:layout_constraintRight_toRightOf="@id/ivBackground"
