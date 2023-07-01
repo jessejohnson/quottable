@@ -41,9 +41,6 @@ workflows:
             - content: |-
                 #!/usr/bin/env bash
                 echo $BITRISE_DEPLOY_DIR
-      - deploy-to-bitrise-io@2.2:
-          inputs:
-            - deploy_path: $PROJECT_LOCATION/build/times.csv
       - deploy-to-bitrise-io@2.2: {}
       - cache-push@2: {}
 app:
